@@ -12,6 +12,9 @@ public class CommonPage {
     public Locator homeLink;
     public Locator categoriesNav;
     public Locator handToolsLink;
+    public Locator cartLink;
+    public Locator cartBadge;
+    public Locator contactLink;
 
     public CommonPage(Page page) {
         signInLink = page.locator("[data-test='nav-sign-in']");
@@ -21,5 +24,8 @@ public class CommonPage {
         homeLink = page.locator("[data-test='nav-home']");
         categoriesNav = page.locator("[data-test='nav-categories']");
         handToolsLink = page.locator("[data-test='nav-hand-tools']");
+        cartLink = page.locator("[data-test='nav-cart']");
+        cartBadge = page.locator("[data-test='cart-quantity']");
+        contactLink = page.locator("[data-test='nav-contact']");
     }
 }

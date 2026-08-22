@@ -13,6 +13,41 @@ public class ProductSteps {
         productPage = new ProductPage(page);
     }
 
+    public ProductSteps validateProductDetails() {
+        PlaywrightAssertions.assertThat(productPage.productName).isVisible();
+        PlaywrightAssertions.assertThat(productPage.unitPrice).isVisible();
+        PlaywrightAssertions.assertThat(productPage.description).isVisible();
+        PlaywrightAssertions.assertThat(productPage.co2Rating).isVisible();
+        PlaywrightAssertions.assertThat(productPage.quantityInput).isVisible();
+
+        return this;
+    }
+
+    public ProductSteps increaseQuantityTo(int quantity) {
+        while (Integer.parseInt(productPage.quantityInput.inputValue()) < quantity) {
+            productPage.increaseQuantity.click();
+        }
+        PlaywrightAssertions.assertThat(productPage.quantityInput).hasValue(String.valueOf(quantity));
+
+        return this;
+    }
+
+    public ProductSteps addToCart() {
+        productPage.addToCart.click();
+
+        return this;
+    }
+
+    public ProductSteps validateCartToast(String message) {
+        PlaywrightAssertions.assertThat(productPage.toastMessage).containsText(message);
+
+        return this;
+    }
+
+    public double getUnitPrice() {
+        return Double.parseDouble(productPage.unitPrice.innerText().trim());
+    }
+
     public ProductSteps addItemToFavourites() {
         productPage.addToFavourites.click();
 
