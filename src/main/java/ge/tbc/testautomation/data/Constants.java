@@ -36,6 +36,12 @@ public class Constants {
     public static final String CONTACT_ATTACHMENT_TYPE_ERROR = "File should have a txt extension.";
     public static final String INVALID_ATTACHMENT_FILE = "invalid.png";
     public static final String VALID_ATTACHMENT_FILE = "valid.txt";
+    public static final String PRESTASHOP_URL = "https://demo.prestashop.com/";
+    public static final String PRESTASHOP_FRAME_NAME = "framelive";
+    public static final String PRESTASHOP_SUBJECT = "Customer service";
+    public static final String PRESTASHOP_MESSAGE = "I need help with my recent order. Please contact me about the delivery status.";
+    public static final String PRESTASHOP_SUCCESS_MESSAGE = "Your message has been successfully sent to our team.";
+    public static final String PRESTASHOP_ATTACHMENT_FILE = "support.png";
     public static final int QUANTITY_TWO = 2;
     public static final int QUANTITY_THREE = 3;
 }
