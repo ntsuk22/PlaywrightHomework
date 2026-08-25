@@ -18,6 +18,8 @@ public class RegisterPage {
     public Locator emailInput;
     public Locator passwordInput;
     public Locator registerBtn;
+    public Locator emailError;
+    public Locator passwordError;
 
     public RegisterPage(Page page) {
         firstNameInput = page.locator("[data-test='first-name']");
@@ -33,5 +35,7 @@ public class RegisterPage {
         emailInput = page.locator("[data-test='email']");
         passwordInput = page.locator("[data-test='password']");
         registerBtn = page.locator("[data-test='register-submit']");
+        emailError = page.locator("[data-test='email-error']");
+        passwordError = page.locator("[data-test='password-error']");
     }
 }

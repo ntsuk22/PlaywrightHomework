@@ -23,9 +23,74 @@ public class HomeSteps {
         return this;
     }
 
+    public HomeSteps goToContact() {
+        page.waitForResponse(
+                response -> response.url().contains("/users/me"),
+                homePage.contactLink::click);
+
+        return this;
+    }
+
     public HomeSteps goToHome() {
         homePage.homeLink.click();
         homePage.productCards.first().waitFor();
+
+        return this;
+    }
+
+    public HomeSteps validateCatalogDisplayed() {
+        homePage.productCards.first().waitFor();
+        PlaywrightAssertions.assertThat(homePage.productCards.first()).isVisible();
+        PlaywrightAssertions.assertThat(homePage.sortSelect).isVisible();
+        PlaywrightAssertions.assertThat(homePage.filters).isVisible();
+        PlaywrightAssertions.assertThat(homePage.categoryHeading).isVisible();
+        PlaywrightAssertions.assertThat(homePage.brandHeading).isVisible();
+        PlaywrightAssertions.assertThat(homePage.paginationNext).isVisible();
+
+        return this;
+    }
+
+    public HomeSteps searchFor(String query) {
+        homePage.searchInput.fill(query);
+        homePage.searchSubmit.click();
+        homePage.searchCompletedState.waitFor();
+
+        return this;
+    }
+
+    public HomeSteps validateSearchResultsContain(String query) {
+        homePage.productNames.first().waitFor();
+        int count = homePage.productNames.count();
+        Assert.assertTrue(count > 0);
+        for (int i = 0; i < count; i++) {
+            Assert.assertTrue(homePage.productNames.nth(i).innerText().toLowerCase().contains(query.toLowerCase()));
+        }
+
+        return this;
+    }
+
+    public HomeSteps selectBrand(String brandName) {
+        homePage.brandCheckbox(brandName).check();
+        homePage.filterStarted.waitFor();
+        homePage.searchCompleted.waitFor();
+
+        return this;
+    }
+
+    public HomeSteps openProduct(String productName) {
+        homePage.productNames.filter(new Locator.FilterOptions().setHasText(productName)).first().click();
+
+        return this;
+    }
+
+    public HomeSteps goToCart() {
+        homePage.cartLink.click();
+
+        return this;
+    }
+
+    public HomeSteps validateCartBadge(int expectedCount) {
+        PlaywrightAssertions.assertThat(homePage.cartBadge).hasText(String.valueOf(expectedCount));
 
         return this;
     }
@@ -54,6 +119,12 @@ public class HomeSteps {
 
     public HomeSteps validateLoggedIn() {
         PlaywrightAssertions.assertThat(homePage.userMenu).isVisible();
+
+        return this;
+    }
+
+    public HomeSteps validateLoggedOut() {
+        PlaywrightAssertions.assertThat(homePage.signInLink).isVisible();
 
         return this;
     }

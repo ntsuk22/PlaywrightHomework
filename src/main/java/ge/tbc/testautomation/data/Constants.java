@@ -15,6 +15,27 @@ public class Constants {
     public static final String FIRST_CATEGORY = "Hammer";
     public static final String SECOND_CATEGORY = "Pliers";
     public static final String THOR_HAMMER = "Thor Hammer";
+    public static final String GUEST_CHECKOUT_PRODUCT = "Sledgehammer";
     public static final String EXPECTED_CATEGORY_TAG = "Hammer";
     public static final String EXPECTED_BRAND_TAG = "ForgeFlex Tools";
+    public static final String SEARCH_QUERY = "Hammer";
+    public static final String GUEST_EMAIL = "guest.nino@gmail.com";
+    public static final String CART_TOAST_MESSAGE = "Product added to shopping cart";
+    public static final String PAYMENT_CASH_ON_DELIVERY = "cash-on-delivery";
+    public static final String INVALID_EMAIL = "invalid-email";
+    public static final String WEAK_PASSWORD = "weak";
+    public static final String PASSWORD_RULES_HEADING = "Your password must:";
+    public static final String PASSWORD_RULE_LENGTH = "Be at least 8 characters long";
+    public static final String PASSWORD_RULE_CASE = "Contain both uppercase and lowercase letters";
+    public static final String PASSWORD_RULE_NUMBER = "Include at least one number";
+    public static final String PASSWORD_RULE_SYMBOL = "Have at least one special symbol";
+    public static final String FORGOT_PASSWORD_TITLE = "Forgot Password";
+    public static final String CONTACT_SUBJECT = "customer-service";
+    public static final String CONTACT_MESSAGE = "I need help with my recent order. Please contact me about the delivery status and next steps.";
+    public static final String CONTACT_SUCCESS_MESSAGE = "Thanks for your message! We will contact you shortly.";
+    public static final String CONTACT_ATTACHMENT_TYPE_ERROR = "File should have a txt extension.";
+    public static final String INVALID_ATTACHMENT_FILE = "invalid.png";
+    public static final String VALID_ATTACHMENT_FILE = "valid.txt";
+    public static final int QUANTITY_TWO = 2;
+    public static final int QUANTITY_THREE = 3;
 }
