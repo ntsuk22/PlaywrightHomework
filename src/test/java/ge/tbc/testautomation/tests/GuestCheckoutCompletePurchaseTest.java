@@ -5,9 +5,14 @@ import ge.tbc.testautomation.steps.CartSteps;
 import ge.tbc.testautomation.steps.CheckoutSteps;
 import ge.tbc.testautomation.steps.HomeSteps;
 import ge.tbc.testautomation.steps.ProductSteps;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+@Epic("Playwright Homework")
+@Feature("Guest checkout")
 public class GuestCheckoutCompletePurchaseTest extends BaseTest {
     HomeSteps homeSteps;
     ProductSteps productSteps;
@@ -22,6 +27,7 @@ public class GuestCheckoutCompletePurchaseTest extends BaseTest {
         checkoutSteps = new CheckoutSteps(page);
     }
 
+    @Description("SCRUM-T23: complete a Toolshop purchase without signing in.")
     @Test(description = "SCRUM-T23: შეკვეთის სრული პროცესი ავტორიზაციის გარეშე")
     public void completePurchaseAsGuest() {
         homeSteps.validateCatalogDisplayed();

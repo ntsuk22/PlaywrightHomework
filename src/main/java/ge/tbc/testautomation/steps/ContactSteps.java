@@ -5,6 +5,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import ge.tbc.testautomation.data.Constants;
 import ge.tbc.testautomation.pages.ContactPage;
+import io.qameta.allure.Step;
 
 import java.nio.file.Path;
 
@@ -17,6 +18,7 @@ public class ContactSteps {
         contactPage = new ContactPage(page);
     }
 
+    @Step("Validate contact form is displayed")
     public ContactSteps validateContactFormDisplayed() {
         PlaywrightAssertions.assertThat(contactPage.firstNameInput).isVisible();
         PlaywrightAssertions.assertThat(contactPage.lastNameInput).isVisible();
@@ -29,12 +31,14 @@ public class ContactSteps {
         return this;
     }
 
+    @Step("Submit contact form")
     public ContactSteps submit() {
         contactPage.submitBtn.click();
 
         return this;
     }
 
+    @Step("Validate required field errors")
     public ContactSteps validateRequiredFieldErrors() {
         PlaywrightAssertions.assertThat(contactPage.firstNameError).isVisible();
         PlaywrightAssertions.assertThat(contactPage.lastNameError).isVisible();
@@ -45,6 +49,7 @@ public class ContactSteps {
         return this;
     }
 
+    @Step("Fill first name, last name and email")
     public ContactSteps fillIdentity(String firstName, String lastName, String email) {
         fillAndBlur(contactPage.firstNameInput, firstName);
         fillAndBlur(contactPage.lastNameInput, lastName);
@@ -56,6 +61,7 @@ public class ContactSteps {
         return this;
     }
 
+    @Step("Select contact subject")
     public ContactSteps selectSubject(String subject) {
         contactPage.subjectSelect.selectOption(subject);
         PlaywrightAssertions.assertThat(contactPage.subjectError).isHidden();
@@ -63,6 +69,7 @@ public class ContactSteps {
         return this;
     }
 
+    @Step("Fill contact message")
     public ContactSteps fillMessage(String message) {
         fillAndBlur(contactPage.messageInput, message);
         PlaywrightAssertions.assertThat(contactPage.messageError).isHidden();
@@ -70,12 +77,14 @@ public class ContactSteps {
         return this;
     }
 
+    @Step("Attach file to contact form")
     public ContactSteps attachFile(Path file) {
         contactPage.attachmentInput.setInputFiles(file);
 
         return this;
     }
 
+    @Step("Validate attachment type error")
     public ContactSteps validateAttachmentTypeError() {
         PlaywrightAssertions.assertThat(contactPage.attachmentError).isVisible();
         PlaywrightAssertions.assertThat(contactPage.attachmentError).containsText(Constants.CONTACT_ATTACHMENT_TYPE_ERROR);
@@ -83,12 +92,14 @@ public class ContactSteps {
         return this;
     }
 
+    @Step("Validate attachment is accepted")
     public ContactSteps validateAttachmentAccepted() {
         PlaywrightAssertions.assertThat(contactPage.attachmentError).isHidden();
 
         return this;
     }
 
+    @Step("Validate contact success message")
     public ContactSteps validateSuccess(String message) {
         PlaywrightAssertions.assertThat(contactPage.successAlert).isVisible();
         PlaywrightAssertions.assertThat(contactPage.successAlert).containsText(message);
@@ -97,6 +108,7 @@ public class ContactSteps {
         return this;
     }
 
+    @Step("Validate contact form is reset")
     public ContactSteps validateFormReset() {
         PlaywrightAssertions.assertThat(contactPage.firstNameInput).isVisible();
         PlaywrightAssertions.assertThat(contactPage.firstNameInput).hasValue("");

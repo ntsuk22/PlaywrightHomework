@@ -7,9 +7,14 @@ import ge.tbc.testautomation.steps.HomeSteps;
 import ge.tbc.testautomation.steps.LoginSteps;
 import ge.tbc.testautomation.steps.ProductSteps;
 import ge.tbc.testautomation.steps.RegisterSteps;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+@Epic("Playwright Homework")
+@Feature("Registration and login")
 public class UserRegistrationAndLoginFlowTest extends BaseTest {
     RegisterSteps registerSteps;
     LoginSteps loginSteps;
@@ -28,6 +33,7 @@ public class UserRegistrationAndLoginFlowTest extends BaseTest {
         forgotPasswordSteps = new ForgotPasswordSteps(page);
     }
 
+    @Description("SCRUM-T24: register, log in, manage favourites, log out, and request a password reset.")
     @Test(description = "SCRUM-T24: მომხმარებლის რეგისტრაცია, ავტორიზაცია და სესია")
     public void registerLoginAndManageSession() {
         String email = "nino" + System.currentTimeMillis() + "@gmail.com";

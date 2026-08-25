@@ -3,12 +3,17 @@ package ge.tbc.testautomation.tests;
 import ge.tbc.testautomation.data.Constants;
 import ge.tbc.testautomation.steps.ContactSteps;
 import ge.tbc.testautomation.steps.HomeSteps;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+@Epic("Playwright Homework")
+@Feature("Contact form")
 public class ContactFormSubmissionTest extends BaseTest {
     HomeSteps homeSteps;
     ContactSteps contactSteps;
@@ -19,6 +24,7 @@ public class ContactFormSubmissionTest extends BaseTest {
         contactSteps = new ContactSteps(page);
     }
 
+    @Description("SCRUM-T25: submit the Toolshop contact form with validation and attachment checks.")
     @Test(description = "SCRUM-T25: საკონტაქტო ფორმის გაგზავნა და ვალიდაცია")
     public void submitContactFormWithValidation() {
         homeSteps.goToContact();
