@@ -4,6 +4,7 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import ge.tbc.testautomation.pages.HomePage;
+import io.qameta.allure.Step;
 import org.testng.Assert;
 
 import java.util.Random;
@@ -17,12 +18,14 @@ public class HomeSteps {
         homePage = new HomePage(page);
     }
 
+    @Step("Go to Sign in")
     public HomeSteps goToSignIn() {
         homePage.signInLink.click();
 
         return this;
     }
 
+    @Step("Go to Contact")
     public HomeSteps goToContact() {
         page.waitForResponse(
                 response -> response.url().contains("/users/me"),
@@ -31,6 +34,7 @@ public class HomeSteps {
         return this;
     }
 
+    @Step("Go to Home")
     public HomeSteps goToHome() {
         homePage.homeLink.click();
         homePage.productCards.first().waitFor();
@@ -38,6 +42,7 @@ public class HomeSteps {
         return this;
     }
 
+    @Step("Validate catalog is displayed")
     public HomeSteps validateCatalogDisplayed() {
         homePage.productCards.first().waitFor();
         PlaywrightAssertions.assertThat(homePage.productCards.first()).isVisible();
@@ -50,6 +55,7 @@ public class HomeSteps {
         return this;
     }
 
+    @Step("Search for {query}")
     public HomeSteps searchFor(String query) {
         homePage.searchInput.fill(query);
         homePage.searchSubmit.click();
@@ -58,6 +64,7 @@ public class HomeSteps {
         return this;
     }
 
+    @Step("Validate search results contain {query}")
     public HomeSteps validateSearchResultsContain(String query) {
         homePage.productNames.first().waitFor();
         int count = homePage.productNames.count();
@@ -69,6 +76,7 @@ public class HomeSteps {
         return this;
     }
 
+    @Step("Select brand {brandName}")
     public HomeSteps selectBrand(String brandName) {
         homePage.brandCheckbox(brandName).check();
         homePage.filterStarted.waitFor();
@@ -77,24 +85,28 @@ public class HomeSteps {
         return this;
     }
 
+    @Step("Open product {productName}")
     public HomeSteps openProduct(String productName) {
         homePage.productNames.filter(new Locator.FilterOptions().setHasText(productName)).first().click();
 
         return this;
     }
 
+    @Step("Go to cart")
     public HomeSteps goToCart() {
         homePage.cartLink.click();
 
         return this;
     }
 
+    @Step("Validate cart badge shows {expectedCount}")
     public HomeSteps validateCartBadge(int expectedCount) {
         PlaywrightAssertions.assertThat(homePage.cartBadge).hasText(String.valueOf(expectedCount));
 
         return this;
     }
 
+    @Step("Go to favourites")
     public HomeSteps goToFavourites() {
         homePage.userMenu.click();
         homePage.myFavouritesLink.click();
@@ -102,6 +114,7 @@ public class HomeSteps {
         return this;
     }
 
+    @Step("Go to Hand Tools")
     public HomeSteps goToHandTools() {
         homePage.categoriesNav.click();
         homePage.handToolsLink.click();
@@ -109,6 +122,7 @@ public class HomeSteps {
         return this;
     }
 
+    @Step("Log out")
     public HomeSteps logOut() {
         homePage.userMenu.click();
         homePage.signOutLink.click();
@@ -117,18 +131,21 @@ public class HomeSteps {
         return this;
     }
 
+    @Step("Validate user is logged in")
     public HomeSteps validateLoggedIn() {
         PlaywrightAssertions.assertThat(homePage.userMenu).isVisible();
 
         return this;
     }
 
+    @Step("Validate user is logged out")
     public HomeSteps validateLoggedOut() {
         PlaywrightAssertions.assertThat(homePage.signInLink).isVisible();
 
         return this;
     }
 
+    @Step("Choose a random product")
     public String chooseRandomProduct() {
         homePage.productCards.first().waitFor();
         int count = homePage.productCards.count();
@@ -139,6 +156,7 @@ public class HomeSteps {
         return productName;
     }
 
+    @Step("Select category {categoryName}")
     public HomeSteps selectCategory(String categoryName) {
         homePage.categoryCheckbox(categoryName).check();
         homePage.filterStarted.waitFor();
@@ -147,6 +165,7 @@ public class HomeSteps {
         return this;
     }
 
+    @Step("Unselect category {categoryName}")
     public HomeSteps unselectCategory(String categoryName) {
         homePage.categoryCheckbox(categoryName).uncheck();
         homePage.filterStarted.waitFor();
@@ -155,6 +174,7 @@ public class HomeSteps {
         return this;
     }
 
+    @Step("Get product count")
     public int getProductCount() {
         homePage.productCards.first().waitFor();
         goToFirstPageIfNeeded();
@@ -170,6 +190,7 @@ public class HomeSteps {
         return total;
     }
 
+    @Step("Validate product count is {expectedCount}")
     public HomeSteps validateProductCount(int expectedCount) {
         Assert.assertEquals(getProductCount(), expectedCount);
 

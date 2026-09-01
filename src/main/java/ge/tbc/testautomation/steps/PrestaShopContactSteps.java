@@ -7,6 +7,7 @@ import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.options.SelectOption;
 import ge.tbc.testautomation.data.Constants;
 import ge.tbc.testautomation.pages.PrestaShopContactPage;
+import io.qameta.allure.Step;
 
 import java.nio.file.Path;
 
@@ -21,6 +22,7 @@ public class PrestaShopContactSteps {
         this.contactPage = new PrestaShopContactPage(shop);
     }
 
+    @Step("Validate PrestaShop contact form")
     public PrestaShopContactSteps validateFormDisplayed() {
         PlaywrightAssertions.assertThat(contactPage.emailInput).isVisible();
         PlaywrightAssertions.assertThat(contactPage.messageInput).isVisible();
@@ -30,6 +32,7 @@ public class PrestaShopContactSteps {
         return this;
     }
 
+    @Step("Fill PrestaShop contact form")
     public PrestaShopContactSteps fillForm(String subject, String email, String message) {
         if (contactPage.subjectSelect.count() > 0) {
             contactPage.subjectSelect.selectOption(new SelectOption().setLabel(subject));
@@ -41,18 +44,21 @@ public class PrestaShopContactSteps {
         return this;
     }
 
+    @Step("Attach file to PrestaShop contact form")
     public PrestaShopContactSteps attachFile(Path file) {
         contactPage.attachmentInput.setInputFiles(file);
 
         return this;
     }
 
+    @Step("Send PrestaShop contact form")
     public PrestaShopContactSteps send() {
         contactPage.sendBtn.click();
 
         return this;
     }
 
+    @Step("Validate PrestaShop success message")
     public PrestaShopContactSteps validateSuccess(String message) {
         PlaywrightAssertions.assertThat(contactPage.successAlert).isVisible();
         PlaywrightAssertions.assertThat(contactPage.successAlert).containsText(message);

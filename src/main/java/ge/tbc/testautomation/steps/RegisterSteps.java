@@ -6,6 +6,7 @@ import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import ge.tbc.testautomation.data.Constants;
 import ge.tbc.testautomation.pages.RegisterPage;
+import io.qameta.allure.Step;
 
 public class RegisterSteps {
     Page page;
@@ -16,6 +17,7 @@ public class RegisterSteps {
         registerPage = new RegisterPage(page);
     }
 
+    @Step("Validate registration form is displayed")
     public RegisterSteps validateRegistrationFormDisplayed() {
         PlaywrightAssertions.assertThat(registerPage.firstNameInput).isVisible();
         PlaywrightAssertions.assertThat(registerPage.lastNameInput).isVisible();
@@ -32,6 +34,7 @@ public class RegisterSteps {
         return this;
     }
 
+    @Step("Fill invalid email and password")
     public RegisterSteps fillInvalidEmailAndPassword(String email, String password) {
         fillAndBlur(registerPage.emailInput, email);
         fillAndBlur(registerPage.passwordInput, password);
@@ -39,6 +42,7 @@ public class RegisterSteps {
         return this;
     }
 
+    @Step("Validate registration validation errors")
     public RegisterSteps validateValidationErrors() {
         PlaywrightAssertions.assertThat(registerPage.emailError).isVisible();
         PlaywrightAssertions.assertThat(registerPage.passwordError).isVisible();
@@ -51,6 +55,7 @@ public class RegisterSteps {
         return this;
     }
 
+    @Step("Fill registration form with valid data")
     public RegisterSteps fillRegistrationForm(String firstName, String lastName, String dateOfBirth,
                                               String country, String postalCode, String houseNumber,
                                               String street, String city, String state, String phone,
@@ -72,6 +77,7 @@ public class RegisterSteps {
         return this;
     }
 
+    @Step("Submit registration form")
     public RegisterSteps submit() {
         registerPage.registerBtn.click();
 

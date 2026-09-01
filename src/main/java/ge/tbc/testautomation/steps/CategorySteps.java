@@ -2,6 +2,7 @@ package ge.tbc.testautomation.steps;
 
 import com.microsoft.playwright.Page;
 import ge.tbc.testautomation.pages.CategoryPage;
+import io.qameta.allure.Step;
 
 public class CategorySteps {
     Page page;
@@ -12,6 +13,7 @@ public class CategorySteps {
         categoryPage = new CategoryPage(page);
     }
 
+    @Step("Check Hammer category")
     public CategorySteps checkHammerCategory() {
         categoryPage.hammerCheckbox.waitFor();
         categoryPage.hammerCheckbox.check();
@@ -21,6 +23,7 @@ public class CategorySteps {
         return this;
     }
 
+    @Step("Open Thor Hammer")
     public CategorySteps openThorHammer() {
         categoryPage.thorHammer.click();
 

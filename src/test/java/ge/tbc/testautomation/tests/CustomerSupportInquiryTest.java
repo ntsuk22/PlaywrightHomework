@@ -9,6 +9,9 @@ import com.microsoft.playwright.options.WaitUntilState;
 import ge.tbc.testautomation.data.Constants;
 import ge.tbc.testautomation.steps.PrestaShopContactSteps;
 import ge.tbc.testautomation.steps.PrestaShopHomeSteps;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -17,6 +20,8 @@ import org.testng.annotations.Test;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+@Epic("Playwright Homework")
+@Feature("PrestaShop customer support")
 public class CustomerSupportInquiryTest {
     Playwright playwright;
     Browser browser;
@@ -61,6 +66,7 @@ public class CustomerSupportInquiryTest {
         }
     }
 
+    @Description("SCRUM-T26: extract the store email and submit a PrestaShop contact inquiry.")
     @Test(description = "SCRUM-T26: მომხმარებლის მხარდაჭერის მოთხოვნა ფაილის მიმაგრებით")
     public void submitCustomerSupportInquiry() {
         homeSteps.waitForShop();

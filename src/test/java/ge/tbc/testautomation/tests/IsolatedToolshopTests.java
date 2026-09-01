@@ -7,9 +7,14 @@ import ge.tbc.testautomation.steps.HomeSteps;
 import ge.tbc.testautomation.steps.LoginSteps;
 import ge.tbc.testautomation.steps.ProductSteps;
 import ge.tbc.testautomation.steps.RegisterSteps;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+@Epic("Playwright Homework")
+@Feature("Toolshop isolated tests")
 public class IsolatedToolshopTests extends IsolatedBaseTest {
     RegisterSteps registerSteps;
     LoginSteps loginSteps;
@@ -33,6 +38,7 @@ public class IsolatedToolshopTests extends IsolatedBaseTest {
         registerAndLogin();
     }
 
+    @Description("Add a random product to favourites and verify it persists after re-login")
     @Test(description = "Add a random product to favourites and verify it persists after re-login")
     public void favouritesTest() {
         homeSteps.goToHome();
@@ -49,6 +55,7 @@ public class IsolatedToolshopTests extends IsolatedBaseTest {
         favouritesSteps.validateFavouriteVisible(favouriteProductName);
     }
 
+    @Description("Verify that combined category filters return the sum of individual counts")
     @Test(description = "Verify that combined category filters return the sum of individual counts")
     public void filterTest() {
         homeSteps.goToHome();
@@ -61,6 +68,7 @@ public class IsolatedToolshopTests extends IsolatedBaseTest {
         homeSteps.validateProductCount(firstCategoryCount + secondCategoryCount);
     }
 
+    @Description("Remove a favourite and verify it stays deleted after re-login")
     @Test(description = "Remove a favourite and verify it stays deleted after re-login")
     public void removeFavouriteTest() {
         homeSteps.goToHome();
@@ -80,6 +88,7 @@ public class IsolatedToolshopTests extends IsolatedBaseTest {
         favouritesSteps.validateFavouriteNotVisible(favouriteProductName);
     }
 
+    @Description("Open Thor Hammer from Hand Tools / Hammer and validate tags")
     @Test(description = "Open Thor Hammer from Hand Tools / Hammer and validate tags")
     public void tagsTest() {
         homeSteps.goToHandTools();

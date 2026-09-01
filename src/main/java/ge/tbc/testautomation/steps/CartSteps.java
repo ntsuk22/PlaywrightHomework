@@ -3,6 +3,7 @@ package ge.tbc.testautomation.steps;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import ge.tbc.testautomation.pages.CartPage;
+import io.qameta.allure.Step;
 import org.testng.Assert;
 
 public class CartSteps {
@@ -14,6 +15,7 @@ public class CartSteps {
         cartPage = new CartPage(page);
     }
 
+    @Step("Validate cart item {productName}")
     public CartSteps validateCartItem(String productName, int quantity, double unitPrice) {
         PlaywrightAssertions.assertThat(cartPage.productTitle).containsText(productName);
         PlaywrightAssertions.assertThat(cartPage.quantityInput).hasValue(String.valueOf(quantity));
@@ -24,6 +26,7 @@ public class CartSteps {
         return this;
     }
 
+    @Step("Update cart quantity to {quantity}")
     public CartSteps updateQuantity(int quantity) {
         cartPage.quantityInput.fill(String.valueOf(quantity));
         cartPage.quantityInput.press("Enter");
@@ -32,6 +35,7 @@ public class CartSteps {
         return this;
     }
 
+    @Step("Validate cart total")
     public CartSteps validateTotal(double unitPrice, int quantity) {
         String expected = String.format("%.2f", unitPrice * quantity);
         PlaywrightAssertions.assertThat(cartPage.linePrice).containsText(expected);
@@ -40,6 +44,7 @@ public class CartSteps {
         return this;
     }
 
+    @Step("Proceed to checkout")
     public CartSteps proceedToCheckout() {
         cartPage.proceedToCheckout.click();
 

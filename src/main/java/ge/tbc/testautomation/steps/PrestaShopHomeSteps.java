@@ -7,6 +7,7 @@ import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import ge.tbc.testautomation.data.Constants;
 import ge.tbc.testautomation.pages.PrestaShopHomePage;
+import io.qameta.allure.Step;
 import org.testng.Assert;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class PrestaShopHomeSteps {
         this.homePage = new PrestaShopHomePage(shop);
     }
 
+    @Step("Wait for PrestaShop demo inside framelive")
     public PrestaShopHomeSteps waitForShop() {
         page.locator("iframe[name='" + Constants.PRESTASHOP_FRAME_NAME + "']")
                 .waitFor(new Locator.WaitForOptions()
@@ -34,6 +36,7 @@ public class PrestaShopHomeSteps {
         return this;
     }
 
+    @Step("Extract store email from footer with page.evaluate()")
     public String extractStoreEmail() {
         homePage.footerEmailLink.first().waitFor();
         String footerHref = homePage.footerEmailLink.first().getAttribute("href");
@@ -52,6 +55,7 @@ public class PrestaShopHomeSteps {
         return email;
     }
 
+    @Step("Go to Contact us")
     public PrestaShopHomeSteps goToContactUs() {
         homePage.contactUsLink.first().click();
 

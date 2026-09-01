@@ -3,6 +3,7 @@ package ge.tbc.testautomation.steps;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import ge.tbc.testautomation.pages.LoginPage;
+import io.qameta.allure.Step;
 
 public class LoginSteps {
     Page page;
@@ -13,6 +14,7 @@ public class LoginSteps {
         loginPage = new LoginPage(page);
     }
 
+    @Step("Validate login page")
     public LoginSteps validateLoginPage() {
         PlaywrightAssertions.assertThat(loginPage.emailInput).isVisible();
         PlaywrightAssertions.assertThat(loginPage.passwordInput).isVisible();
@@ -23,18 +25,21 @@ public class LoginSteps {
         return this;
     }
 
+    @Step("Go to register")
     public LoginSteps goToRegister() {
         loginPage.registerLink.click();
 
         return this;
     }
 
+    @Step("Go to forgot password")
     public LoginSteps goToForgotPassword() {
         loginPage.forgotPasswordLink.click();
 
         return this;
     }
 
+    @Step("Fill login credentials")
     public LoginSteps fillLoginCredentials(String username, String password) {
         loginPage.loginBtn.waitFor();
         loginPage.emailInput.fill(username);
@@ -43,6 +48,7 @@ public class LoginSteps {
         return this;
     }
 
+    @Step("Click login")
     public LoginSteps logIn() {
         loginPage.loginBtn.click();
 
